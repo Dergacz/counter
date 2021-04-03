@@ -1,0 +1,14 @@
+.ResetBtn {
+    grid-area: r;
+    font-size: 15px;
+    padding: 7px 15px 7px 15px;
+    margin-right: 25px;
+    width: 100px;
+    background-color: #EDEEF0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.resetRed{
+    background-color: red;
+}

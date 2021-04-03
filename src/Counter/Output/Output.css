@@ -1,0 +1,8 @@
+.red{
+    color: red;
+}
+.output{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

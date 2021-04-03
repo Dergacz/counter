@@ -1,0 +1,12 @@
+.CounterBody{
+    background: linear-gradient(21deg, #2193b0, #6dd5ed);
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    width: 60vh;
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid black;
+}
+
+

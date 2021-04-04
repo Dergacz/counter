@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import {Counter} from "./Counter/Counter";
 
-function App() {
+export function App() {
 
   let [count, setCount] = useState<number>(0);
 
@@ -24,4 +24,4 @@ function App() {
   );
 }
 
-export default App;
+

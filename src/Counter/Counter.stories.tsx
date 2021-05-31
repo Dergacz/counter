@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {Counter} from "./Counter";
 import {action} from "@storybook/addon-actions";
 
@@ -13,7 +13,7 @@ const resetCount = action("reset count")
 export const ZeroCounter = () => {
     return (
         <Counter
-            title={0}
+            value={0}
             newCount={incCount}
             resetCount={resetCount}/>
     )
@@ -21,7 +21,7 @@ export const ZeroCounter = () => {
 export const NumCounter = () => {
     return (
         <Counter
-            title={1}
+            value={1}
             newCount={incCount}
             resetCount={resetCount}/>
     )
@@ -29,7 +29,7 @@ export const NumCounter = () => {
 export const MaxCounter = () => {
     return (
         <Counter
-            title={5}
+            value={5}
             newCount={incCount}
             resetCount={resetCount}/>
     )

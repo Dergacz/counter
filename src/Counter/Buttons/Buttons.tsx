@@ -6,14 +6,19 @@ import "./Buttons.css"
 export type ButtonsPropsType = {
     newCount: () => void
     resetCount: () => void
-    title: number
+    value: number
+    title: string
 }
 
 export const Buttons = (props: ButtonsPropsType) => {
     return(
         <div className={"Buttons"}>
-    <IncButton newCount={props.newCount} title={props.title}/>
-    <ResetButton resetCount={props.resetCount} title={props.title}/>
+    <IncButton
+        newCount={props.newCount}
+        value={props.value}
+        title={props.title}
+    />
+    <ResetButton resetCount={props.resetCount} title={props.value}/>
 </div>
     )
 }

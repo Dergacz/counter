@@ -6,7 +6,7 @@ export function App() {
 
   let [count, setCount] = useState<number>(0);
 
-  const newCount = () => {
+const newCount = () => {
     count < 5 ? setCount(++count) : setCount(5)
   }
   const resetCount = () => {
@@ -16,9 +16,10 @@ export function App() {
   let title = count
   return (
       <div className="App">
-        <Counter title={title}
+        <Counter value={title}
                  newCount={newCount}
-                 resetCount={resetCount}/>
+                 resetCount={resetCount}
+        />
       </div>
   );
 }

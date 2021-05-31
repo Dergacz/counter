@@ -3,16 +3,17 @@ import "./IncButton.css"
 
 type IncPropsType = {
     newCount: () => void
-    title: number
+    value: number
+    title: string
 }
 
 export const IncButton = (props: IncPropsType) => {
     return (
         <div>
             <button onClick={() => props.newCount()}
-                    disabled={props.title === 5}
+                    disabled={props.value === 5}
                     className={`${"IncBtn"} 
-                    ${props.title < 5 ? "IncGreen" : ""}`}>inc
+                    ${props.value < 5 ? "IncGreen" : ""}`}>{props.title}
             </button>
         </div>
     )

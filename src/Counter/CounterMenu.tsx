@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import "./CounterMenu.css"
+import {PMButtons} from "./Buttons/PMButtons";
 
 export const CounterMenu = () => {
 
@@ -27,7 +28,6 @@ export const CounterMenu = () => {
     }, [minValue]);
 
 
-
     const incMaxValue = () => {
         setMaxValue(maxValue + 1)
     }
@@ -49,23 +49,21 @@ export const CounterMenu = () => {
     }, [maxValue]);
 
 
-
     return (
         <div>
             <div>
                 <span>
                    <span>start value</span>
                 <input
-
+                    value={minValue}
                     className={
                         minValue <= maxValue || minValue < 0
-                        ? "input"
-                        : ""
+                            ? "input"
+                            : ""
                     }
-                    value={minValue}
                 />
-                    <button onClick={incMinValue}>+</button>
-                    <button onClick={decMinValue}>-</button>
+                    <PMButtons title={"+"} onClick={incMinValue}/>
+                    <PMButtons title={"-"} onClick={decMinValue}/>
                 </span>
 
             </div>

@@ -3,7 +3,7 @@ import "./ResetButton.css"
 
 type ResetPropsType = {
     resetCount: () => void
-    value: number | string
+    value: number
 }
 
 export const ResetButton = (props: ResetPropsType) => {

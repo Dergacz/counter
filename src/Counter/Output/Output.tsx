@@ -2,8 +2,10 @@ import React from "react";
 import "./Output.css";
 
 export type OutputPropsType = {
+    title: string
     value: number
     maxValue: number
+    editMode: boolean
 }
 
 export const Output = (props: OutputPropsType) => {
@@ -14,7 +16,7 @@ export const Output = (props: OutputPropsType) => {
                 ? "red"
                 : ""
             }>
-                {props.value}
+                {!props.editMode ? props.value : props.title}
             </h2>
         </div>
     )

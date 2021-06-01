@@ -4,6 +4,7 @@ import "./ResetButton.css"
 type ResetPropsType = {
     resetCount: () => void
     value: number
+    title: string
 }
 
 export const ResetButton = (props: ResetPropsType) => {

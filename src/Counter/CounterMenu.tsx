@@ -4,7 +4,7 @@ import {PMButtons} from "./Buttons/PMButtons";
 import {SetButton} from "./Buttons/SetButton";
 
 type CounterMenuPropsType = {
-    value: number | string
+    value: number
     minValue: number
     maxValue: number
     incMinValue: () => void
@@ -52,7 +52,6 @@ export const CounterMenu = (props: CounterMenuPropsType) => {
             </div>
             <SetButton
                 setCount={props.setCount}
-
             />
         </div>
     )

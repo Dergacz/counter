@@ -8,6 +8,7 @@ export function App() {
     let [maxValue, setMaxValue] = useState<number>(0);
 
     let [count, setCount] = useState<number>(minValue);
+    let [editMode, setEditMode] = useState<boolean>(false);
 
     const incMinValue = () => {
         setMinValue(minValue + 1)
@@ -25,9 +26,6 @@ export function App() {
         }
     }, []);
 
-    useEffect(() => {
-        localStorage.setItem("minValueKey", JSON.stringify(minValue))
-    }, [minValue]);
 
     const incMaxValue = () => {
         setMaxValue(maxValue + 1)
@@ -46,22 +44,35 @@ export function App() {
     }, []);
 
     useEffect(() => {
-        localStorage.setItem("maxValueKey", JSON.stringify(maxValue))
-    }, [maxValue]);
+        localStorage.setItem("maxValueKey", JSON.stringify(maxValue));
+        localStorage.setItem("minValueKey", JSON.stringify(minValue));
+        setEditMode(true);
+    }, [maxValue, minValue]);
 
 
     const newCount = () => {
-        count < maxValue ? setCount(++count) : setCount(maxValue)
+        count < maxValue ? setCount(++count) : setCount(maxValue);
     }
     const resetCount = () => {
         setCount(minValue);
+        setEditMode(false);
     }
+
+    let title;
+    if (minValue < maxValue) {
+        title = "Enter values and press 'set'";
+    }
+    else {
+        title = "Incorrect value";
+    }
+
 
 
     return (
         <div className="App">
             <Counter
                 value={count}
+                title={title}
                 minValue={minValue}
                 maxValue={maxValue}
                 newCount={newCount}
@@ -70,6 +81,7 @@ export function App() {
                 decMinValue={decMinValue}
                 incMaxValue={incMaxValue}
                 decMaxValue={decMaxValue}
+                editMode={editMode}
             />
         </div>
     );

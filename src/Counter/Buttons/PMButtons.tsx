@@ -12,7 +12,9 @@ export const PMButtons = (props: PMButtonsPropsType) => {
             <button
                 onClick={props.onClick}
                 className={props.title === "+" ? "green" : "red"}
-            >{props.title}</button>
+
+            >{props.title}
+            </button>
         </span>
     )
 }

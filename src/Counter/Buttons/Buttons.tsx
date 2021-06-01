@@ -23,6 +23,7 @@ export const Buttons = (props: ButtonsPropsType) => {
     <ResetButton
         resetCount={props.resetCount}
         value={props.value}
+        title={props.title}
     />
 </div>
     )

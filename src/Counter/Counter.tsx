@@ -47,6 +47,7 @@ export const Counter = (props: CounterPropsType) => {
                     value={props.value}
                     title={"inc"}
                     maxValue={props.maxValue}
+                    editMode={props.editMode}
                 />
             </div>
         </div>

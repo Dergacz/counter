@@ -6,6 +6,7 @@ type IncPropsType = {
     value: number
     title: string
     maxValue: number
+    editMode: boolean
 }
 
 export const IncButton = (props: IncPropsType) => {
@@ -13,7 +14,7 @@ export const IncButton = (props: IncPropsType) => {
         <div>
             <button
                 onClick={() => props.newCount()}
-                disabled={props.value === props.maxValue}
+                disabled={props.value === props.maxValue || props.editMode === true}
                 className={`${"IncBtn"} 
                     ${props.value < props.maxValue ? "IncGreen" : ""}`}
             >{props.title}

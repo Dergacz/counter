@@ -9,6 +9,7 @@ export type ButtonsPropsType = {
     value: number
     title: string
     maxValue: number
+    editMode: boolean
 }
 
 export const Buttons = (props: ButtonsPropsType) => {
@@ -19,11 +20,13 @@ export const Buttons = (props: ButtonsPropsType) => {
         value={props.value}
         title={props.title}
         maxValue={props.maxValue}
+        editMode={props.editMode}
     />
     <ResetButton
         resetCount={props.resetCount}
         value={props.value}
         title={props.title}
+        editMode={props.editMode}
     />
 </div>
     )

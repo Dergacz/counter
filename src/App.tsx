@@ -59,14 +59,11 @@ export function App() {
     }
 
     let title;
-    if (minValue < maxValue) {
+    if (minValue >= maxValue || minValue < 0 || maxValue < 0) {
+        title = "Incorrect value";
+    } else {
         title = "Enter values and press 'set'";
     }
-    else {
-        title = "Incorrect value";
-    }
-
-
 
     return (
         <div className="App">

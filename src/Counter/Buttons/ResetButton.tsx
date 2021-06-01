@@ -5,6 +5,7 @@ type ResetPropsType = {
     resetCount: () => void
     value: number
     title: string
+    editMode: boolean
 }
 
 export const ResetButton = (props: ResetPropsType) => {
@@ -12,6 +13,7 @@ export const ResetButton = (props: ResetPropsType) => {
         <div>
             <button
                 onClick={() => props.resetCount()}
+                disabled={props.editMode === true}
                     className={`${"ResetBtn"}
                     ${"resetRed"}`}
             >reset

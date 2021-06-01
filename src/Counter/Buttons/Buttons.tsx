@@ -8,6 +8,7 @@ export type ButtonsPropsType = {
     resetCount: () => void
     value: number
     title: string
+    maxValue: number
 }
 
 export const Buttons = (props: ButtonsPropsType) => {
@@ -17,8 +18,12 @@ export const Buttons = (props: ButtonsPropsType) => {
         newCount={props.newCount}
         value={props.value}
         title={props.title}
+        maxValue={props.maxValue}
     />
-    <ResetButton resetCount={props.resetCount} title={props.value}/>
+    <ResetButton
+        resetCount={props.resetCount}
+        value={props.value}
+    />
 </div>
     )
 }

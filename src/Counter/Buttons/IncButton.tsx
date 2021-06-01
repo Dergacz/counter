@@ -5,15 +5,18 @@ type IncPropsType = {
     newCount: () => void
     value: number
     title: string
+    maxValue: number
 }
 
 export const IncButton = (props: IncPropsType) => {
     return (
         <div>
-            <button onClick={() => props.newCount()}
-                    disabled={props.value === 5}
-                    className={`${"IncBtn"} 
-                    ${props.value < 5 ? "IncGreen" : ""}`}>{props.title}
+            <button
+                onClick={() => props.newCount()}
+                disabled={props.value === props.maxValue}
+                className={`${"IncBtn"} 
+                    ${props.value < props.maxValue ? "IncGreen" : ""}`}
+            >{props.title}
             </button>
         </div>
     )

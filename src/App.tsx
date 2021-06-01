@@ -49,12 +49,14 @@ export function App() {
         localStorage.setItem("maxValueKey", JSON.stringify(maxValue))
     }, [maxValue]);
 
+
     const newCount = () => {
         count < maxValue ? setCount(++count) : setCount(maxValue)
     }
     const resetCount = () => {
-        setCount(0)
+        setCount(minValue);
     }
+
 
     return (
         <div className="App">

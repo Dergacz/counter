@@ -28,6 +28,7 @@ export const Counter = (props: CounterPropsType) => {
                     decMinValue={props.decMinValue}
                     incMaxValue={props.incMaxValue}
                     decMaxValue={props.decMaxValue}
+                    setCount={props.resetCount}
 
                 />
             </div>
@@ -41,6 +42,7 @@ export const Counter = (props: CounterPropsType) => {
                     resetCount={props.resetCount}
                     value={props.value}
                     title={"inc"}
+                    maxValue={props.maxValue}
                 />
             </div>
         </div>

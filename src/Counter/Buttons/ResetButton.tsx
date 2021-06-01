@@ -3,16 +3,16 @@ import "./ResetButton.css"
 
 type ResetPropsType = {
     resetCount: () => void
-    title: number
+    value: number | string
 }
 
 export const ResetButton = (props: ResetPropsType) => {
     return (
         <div>
-            <button onClick={() => props.resetCount()}
-                    disabled={props.title === 0}
+            <button
+                onClick={() => props.resetCount()}
                     className={`${"ResetBtn"}
-                    ${props.title !== 0 ? "resetRed" : ""}`}
+                    ${"resetRed"}`}
             >reset
             </button>
         </div>

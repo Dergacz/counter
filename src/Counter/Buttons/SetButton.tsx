@@ -1,20 +1,15 @@
 import React from "react";
 
 type SetButtonPropsType = {
-    count: number
-    minValue: number
+    setCount: () => void
 
 }
 
 export const SetButton = (props: SetButtonPropsType) => {
 
-    const setCount = () => {
-        props.count = props.minValue
-    }
-
     return (
         <div>
-            <button onClick={setCount}>Set</button>
+            <button onClick={props.setCount}>Set</button>
         </div>
     )
 }

@@ -1,53 +1,20 @@
 import React, {useEffect, useState} from "react";
 import "./CounterMenu.css"
 import {PMButtons} from "./Buttons/PMButtons";
+import {SetButton} from "./Buttons/SetButton";
 
-export const CounterMenu = () => {
+type CounterMenuPropsType = {
+    value: number
+    minValue: number
+    maxValue: number
+    incMinValue: () => void
+    decMinValue: () => void
+    incMaxValue: () => void
+    decMaxValue: () => void
 
-    let [minValue, setMinValue] = useState<number>(0);
-    let [maxValue, setMaxValue] = useState<number>(0);
+}
 
-    const incMinValue = () => {
-        setMinValue(minValue + 1)
-    }
-
-    const decMinValue = () => {
-        setMinValue(minValue - 1);
-    }
-
-    useEffect(() => {
-        let minValueAsString = localStorage.getItem("minValueKey");
-        if (minValueAsString) {
-            let newMinValue = JSON.parse(minValueAsString);
-            setMinValue(newMinValue);
-        }
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem("minValueKey", JSON.stringify(minValue))
-    }, [minValue]);
-
-
-    const incMaxValue = () => {
-        setMaxValue(maxValue + 1)
-    }
-
-    const decMaxValue = () => {
-        setMaxValue(maxValue - 1);
-    }
-
-    useEffect(() => {
-        let maxValueAsString = localStorage.getItem("maxValueKey");
-        if (maxValueAsString) {
-            let newMaxValue = JSON.parse(maxValueAsString);
-            setMaxValue(newMaxValue);
-        }
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem("maxValueKey", JSON.stringify(maxValue))
-    }, [maxValue]);
-
+export const CounterMenu = (props: CounterMenuPropsType) => {
 
     return (
         <div>
@@ -55,28 +22,35 @@ export const CounterMenu = () => {
                 <span>
                    <span>start value</span>
                 <input
-                    value={minValue}
+                    value={props.minValue}
                     className={
-                        minValue <= maxValue || minValue < 0
+                        props.minValue >= props.maxValue || props.minValue < 0
                             ? "input"
                             : ""
                     }
                 />
-                    <PMButtons title={"+"} onClick={incMinValue}/>
-                    <PMButtons title={"-"} onClick={decMinValue}/>
+                    <PMButtons title={"+"} onClick={props.incMinValue}/>
+                    <PMButtons title={"-"} onClick={props.decMinValue}/>
                 </span>
 
             </div>
             <div>
                 <span>
                      <span>max value</span>
-                <input value={maxValue}/>
-                    <button onClick={incMaxValue}>+</button>
-                    <button onClick={decMaxValue}>-</button>
+                <input
+                    className={
+                        props.minValue >= props.maxValue || props.maxValue < 0
+                            ? "input"
+                            : ""
+                    }
+                    value={props.maxValue}
+                />
+                    <PMButtons title={"+"} onClick={props.incMaxValue}/>
+                    <PMButtons title={"-"} onClick={props.decMaxValue}/>
                 </span>
 
             </div>
-            <button>SET</button>
+            <SetButton count={props.value} minValue={props.minValue}/>
         </div>
     )
 }

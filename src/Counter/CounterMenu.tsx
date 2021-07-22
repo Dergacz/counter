@@ -2,19 +2,10 @@ import React from "react";
 import "./CounterMenu.css"
 import {PMButtons} from "./Buttons/PMButtons";
 import {SetButton} from "./Buttons/SetButton";
+import {CounterMenuType} from "./CounterMenuContainer";
 
-type CounterMenuPropsType = {
-    value: number
-    minValue: number
-    maxValue: number
-    incMinValue: () => void
-    decMinValue: () => void
-    incMaxValue: () => void
-    decMaxValue: () => void
-    setCount: () => void
-}
 
-export const CounterMenu = (props: CounterMenuPropsType) => {
+export const CounterMenu = (props: CounterMenuType) => {
 
     return (
         <div>
@@ -51,6 +42,8 @@ export const CounterMenu = (props: CounterMenuPropsType) => {
 
             </div>
             <SetButton
+                minValue={props.minValue}
+                maxValue={props.maxValue}
                 setCount={props.setCount}
             />
         </div>

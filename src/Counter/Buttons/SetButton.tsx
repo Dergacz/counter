@@ -1,8 +1,10 @@
 import React from "react";
-import "./SetButton.css"
+import style from "./SetButton.module.css"
 
 type SetButtonPropsType = {
     setCount: () => void
+    minValue: number
+    maxValue: number
 
 }
 
@@ -11,7 +13,9 @@ export const SetButton = (props: SetButtonPropsType) => {
     return (
         <div>
             <button
-                className={"setBtn"}
+
+                className={style.setBtn}
+                disabled={props.minValue >= props.maxValue}
                 onClick={props.setCount}>Set</button>
         </div>
     )

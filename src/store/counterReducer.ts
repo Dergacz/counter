@@ -1,42 +1,10 @@
-type CounterInitialStateType = {
-    value: number
-    minValue: number
-    maxValue: number
-    error: string | null
-
-}
-
-const initialState: CounterInitialStateType = {
+const initialState = {
     value: 0,
     minValue: 0,
     maxValue: 1,
     error: null
 }
-
-type IncMinValueType = {
-    type: "INC_MIN_VALUE_TYPE"
-}
-
-type DecMinValueType = {
-    type: "DEC_MIN_VALUE_TYPE"
-}
-
-type IncMaxValueType = {
-    type: "INC_MAX_VALUE_TYPE"
-}
-
-type DecMaxValueType = {
-    type: "DEC_MAX_VALUE_TYPE"
-}
-
-type SetCountType = {
-    type: "SET_COUNT_TYPE"
-}
-
-
-type ResetType = {
-    type: "RESET"
-}
+type CounterInitialStateType = typeof initialState
 
 
 type ActionsType = IncMinValueType
@@ -92,39 +60,22 @@ export const counterReducer = (state: CounterInitialStateType = initialState, ac
 }
 
 
-export const incMinValue = (): IncMinValueType => {
-    return {
-        type: "INC_MIN_VALUE_TYPE"
-    }
-}
+export const incMinValue = () => ({type: "INC_MIN_VALUE_TYPE"} as const)
+export type IncMinValueType = ReturnType<typeof incMinValue>
 
-export const decMinValue = (): DecMinValueType => {
-    return {
-        type: "DEC_MIN_VALUE_TYPE"
-    }
-}
+export const decMinValue = () => ({type: "DEC_MIN_VALUE_TYPE"} as const)
+export type DecMinValueType = ReturnType<typeof decMinValue>
 
-export const incMaxValue = (): IncMaxValueType => {
-    return {
-        type: "INC_MAX_VALUE_TYPE"
-    }
-}
 
-export const decMaxValue = (): DecMaxValueType => {
-    return {
-        type: "DEC_MAX_VALUE_TYPE"
-    }
-}
+export const incMaxValue = () => ({type: "INC_MAX_VALUE_TYPE"} as const)
+export type IncMaxValueType = ReturnType<typeof incMaxValue>
 
-export const setCount = (): SetCountType => {
-    return {
-        type: "SET_COUNT_TYPE"
-    }
-}
+export const decMaxValue = () => ({type: "DEC_MAX_VALUE_TYPE"} as const)
+export type DecMaxValueType = ReturnType<typeof decMaxValue>
 
-export const reset = (): ResetType => {
-    return {
-        type: "RESET"
-    }
-}
 
+export const setCount = () => ({type: "SET_COUNT_TYPE"} as const)
+export type SetCountType = ReturnType<typeof setCount>
+
+export const reset = () => ({type: "RESET"} as const)
+export type ResetType = ReturnType<typeof reset>

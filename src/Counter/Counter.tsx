@@ -3,7 +3,6 @@ import {Output} from "./Output/Output";
 import {Buttons} from "./Buttons/Buttons";
 import "./Counter.css"
 import {CounterMenu} from "./CounterMenu";
-import CounterMenuContainer from "./CounterMenuContainer";
 
 export type CounterPropsType = {
     value: number
@@ -23,7 +22,16 @@ export const Counter = (props: CounterPropsType) => {
     return (
         <div>
             <div className={"CounterMenu"}>
-                <CounterMenuContainer />
+                <CounterMenu
+                    value={props.value}
+                    minValue={props.minValue}
+                    maxValue={props.maxValue}
+                    incMinValue={props.incMinValue}
+                    decMinValue={props.decMinValue}
+                    incMaxValue={props.incMaxValue}
+                    decMaxValue={props.decMaxValue}
+                    setCount={props.resetCount}
+                    />
             </div>
             <div className={"CounterBody"}>
                 <Output

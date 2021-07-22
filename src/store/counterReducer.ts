@@ -7,7 +7,8 @@ const initialState = {
 type CounterInitialStateType = typeof initialState
 
 
-type ActionsType = IncMinValueType
+type ActionsType = IncValueType
+    | IncMinValueType
     | ResetType
     | DecMinValueType
     | IncMaxValueType
@@ -16,6 +17,12 @@ type ActionsType = IncMinValueType
 
 export const counterReducer = (state: CounterInitialStateType = initialState, action: ActionsType) => {
     switch (action.type) {
+        case "INC_VALUE": {
+            return {
+                ...state,
+                value: state.value + 1
+            }
+        }
         case "INC_MIN_VALUE_TYPE": {
             return {
                 ...state,
@@ -43,7 +50,7 @@ export const counterReducer = (state: CounterInitialStateType = initialState, ac
         case "SET_COUNT_TYPE": {
             return {
                 ...state,
-                value: state.value
+                value: action.value
             }
         }
         case "RESET": {
@@ -58,6 +65,9 @@ export const counterReducer = (state: CounterInitialStateType = initialState, ac
     }
 
 }
+
+export const incValue = () => ({type: "INC_VALUE"} as const)
+export type IncValueType = ReturnType<typeof incValue>
 
 
 export const incMinValue = () => ({type: "INC_MIN_VALUE_TYPE"} as const)
@@ -74,7 +84,7 @@ export const decMaxValue = () => ({type: "DEC_MAX_VALUE_TYPE"} as const)
 export type DecMaxValueType = ReturnType<typeof decMaxValue>
 
 
-export const setCount = () => ({type: "SET_COUNT_TYPE"} as const)
+export const setCount = (value: number) => ({type: "SET_COUNT_TYPE", value} as const)
 export type SetCountType = ReturnType<typeof setCount>
 
 export const reset = () => ({type: "RESET"} as const)

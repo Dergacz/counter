@@ -2,7 +2,7 @@ import React from "react";
 import {CounterMenu} from "./CounterMenu";
 import {AppStateType} from "../../store/reduxStore";
 import {connect} from "react-redux";
-import {setError, setMaxValue, setMinValue, setMinValueToCounter} from "../../store/counterReducer";
+import {setError, setErrorMessage, setMaxValue, setMinValue, setMinValueToCounter} from "../../store/counterReducer";
 
 
 class CounterMenuContainer extends React.Component<CounterMenuType, CounterMenuType> {
@@ -17,10 +17,12 @@ class CounterMenuContainer extends React.Component<CounterMenuType, CounterMenuT
                     disableBtnRes={this.props.disableBtnRes}
                     disableBtnSet={this.props.disableBtnSet}
                     error={this.props.error}
+                    errorMessage={this.props.errorMessage}
                     setMinValue={this.props.setMinValue}
                     setMaxValue={this.props.setMaxValue}
                     setMinValueToCounter={this.props.setMinValueToCounter}
                     setError={this.props.setError}
+                    setErrorMessage={this.props.setErrorMessage}
                 />
             </div>
         )
@@ -35,6 +37,7 @@ type MapStateToPropsType = {
     disableBtnRes: boolean
     disableBtnSet: boolean
     error: boolean
+    errorMessage: string
 }
 
 type MapDispatchToProps = {
@@ -42,6 +45,7 @@ type MapDispatchToProps = {
     setMaxValue: (maxValue: number, disableBtnInc: boolean, disableBtnRes: boolean, disableBtnSet: boolean) => void
     setMinValueToCounter: (minValue: number, disableBtnInc: boolean, disableBtnRes: boolean, disableBtnSet: boolean) => void
     setError: (error: boolean, disableBtnSet: boolean) => void
+    setErrorMessage: (error: boolean, errorMessage: string) => void
 }
 
 export type CounterMenuType = MapDispatchToProps & MapStateToPropsType;
@@ -54,7 +58,8 @@ export const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     disableBtnInc: state.counter.disableBtnInc,
     disableBtnRes: state.counter.disableBtnRes,
     disableBtnSet: state.counter.disableBtnSet,
-    error: state.counter.error
+    error: state.counter.error,
+    errorMessage: state.counter.errorMessage
 });
 
 
@@ -62,5 +67,6 @@ export default connect(mapStateToProps, {
     setMinValue,
     setMaxValue,
     setMinValueToCounter,
-    setError
+    setError,
+    setErrorMessage
 })(CounterMenu)

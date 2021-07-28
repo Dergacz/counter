@@ -11,6 +11,7 @@ export const CounterMenu = (props: CounterMenuType) => {
 
         if (value >= maxValue || value < 0 || maxValue < 0) {
             props.setError(true, true);
+            props.setErrorMessage(true, "bad value")
         }
         else {
             props.setError(false, false);
@@ -22,8 +23,9 @@ export const CounterMenu = (props: CounterMenuType) => {
         const minValue = props.minValue;
         props.setMaxValue(value, true, true, false);
 
-        if (value <= minValue) {
+        if (value <= minValue || value < 0 || minValue < 0) {
             props.setError(true, true);
+            props.setErrorMessage(true, "bad value")
         }
         else {
             props.setError(false, false);
@@ -42,6 +44,10 @@ export const CounterMenu = (props: CounterMenuType) => {
                     value={props.minValue}
                     onChange={minValueHandler}
                 />
+                <div>
+                    {props.error && props.errorMessage}
+                </div>
+
             </div>
             <div>
                 <span>max value </span>
@@ -50,6 +56,9 @@ export const CounterMenu = (props: CounterMenuType) => {
                     value={props.maxValue}
                     onChange={maxValueHandler}
                 />
+                <div>
+                    {props.error && props.errorMessage}
+                </div>
             </div>
             <button
                 className={style.btn}

@@ -5,7 +5,8 @@ const initialState = {
     disableBtnInc: true,
     disableBtnRes: true,
     disableBtnSet: false,
-    error: false
+    error: false,
+    errorMessage: ""
 }
 type CounterInitialStateType = typeof initialState
 
@@ -15,6 +16,7 @@ export type ActionType = IncValueActionType
     | ResetValueActionType
     | SetMinValueToCounterActionType
     | SetErrorActionType
+    | SetErrorMessageActionType
 
 
 export const counterReducer = (state: CounterInitialStateType = initialState, action: ActionType): CounterInitialStateType => {
@@ -63,6 +65,13 @@ export const counterReducer = (state: CounterInitialStateType = initialState, ac
                 disableBtnSet: action.disableBtnSet
             }
         }
+        case "SET_ERROR_MESSAGE": {
+            return {
+                ...state,
+                error: action.error,
+                errorMessage: action.errorMessage
+            }
+        }
         default:
             return state
     }
@@ -107,3 +116,10 @@ export const setError = (error: boolean, disableBtnSet: boolean) => ({
     disableBtnSet
 } as const);
 export type SetErrorActionType = ReturnType<typeof setError>
+
+export const setErrorMessage = (error: boolean, errorMessage: string) => ({
+    type: "SET_ERROR_MESSAGE",
+    error,
+    errorMessage
+} as const);
+export type SetErrorMessageActionType = ReturnType<typeof setErrorMessage>

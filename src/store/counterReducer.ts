@@ -43,7 +43,7 @@ export const counterReducer = (state: CounterInitialStateType = initialState, ac
         case "SET_MIN_VALUE_TO_COUNTER": {
             return {
                 ...state,
-                minValue: state.minValue,
+                value: state.minValue,
                 disableBtnInc: !state.disableBtnInc,
                 disableBtnRes: !state.disableBtnRes
             }
@@ -62,27 +62,30 @@ export const counterReducer = (state: CounterInitialStateType = initialState, ac
 export const incValue = () => ({type: "INC_VALUE"} as const);
 export type IncValueActionType = ReturnType<typeof incValue>
 
-export const setMaxValue = (maxValue: number, disableBtnInc: boolean, disableBtnRes: boolean) => ({
+export const setMaxValue = (maxValue: number, disableBtnInc: boolean, disableBtnRes: boolean, disableBtnSet: boolean) => ({
     type: "SET_MAX_VALUE",
     maxValue,
     disableBtnInc,
-    disableBtnRes
+    disableBtnRes,
+    disableBtnSet
 } as const);
 export type SetMaxValueActionType = ReturnType<typeof setMaxValue>
 
-export const setMinValue = (minValue: number, disableBtnInc: boolean, disableBtnRes: boolean) => ({
+export const setMinValue = (minValue: number, disableBtnInc: boolean, disableBtnRes: boolean, disableBtnSet: boolean) => ({
     type: "SET_MIN_VALUE",
     minValue,
     disableBtnInc,
-    disableBtnRes
+    disableBtnRes,
+    disableBtnSet
 } as const);
 export type SetMinValueActionType = ReturnType<typeof setMinValue>
 
-export const setMinValueToCounter = (minValue: number, disableBtnInc: boolean, disableBtnRes: boolean) => ({
+export const setMinValueToCounter = (minValue: number, disableBtnInc: boolean, disableBtnRes: boolean, disableBtnSet: boolean) => ({
     type: "SET_MIN_VALUE_TO_COUNTER",
     minValue,
     disableBtnInc,
-    disableBtnRes
+    disableBtnRes,
+    disableBtnSet
 } as const);
 export type SetMinValueToCounterActionType = ReturnType<typeof setMinValueToCounter>
 

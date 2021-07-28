@@ -4,6 +4,7 @@ import {AppStateType} from "../../store/reduxStore";
 import {connect} from "react-redux";
 import {setMaxValue, setMinValue, setMinValueToCounter} from "../../store/counterReducer";
 
+
 class CounterMenuContainer extends React.Component<CounterMenuType, CounterMenuType> {
     render () {
         return (
@@ -34,9 +35,9 @@ type MapStateToPropsType = {
 }
 
 type MapDispatchToProps = {
-    setMinValue: (minValue: number, disableBtnInc: boolean, disableBtnRes: boolean) => void
-    setMaxValue: (maxValue: number, disableBtnInc: boolean, disableBtnRes: boolean) => void
-    setMinValueToCounter: (minValue: number, disableBtnInc: boolean, disableBtnRes: boolean) => void
+    setMinValue: (minValue: number, disableBtnInc: boolean, disableBtnRes: boolean, disableBtnSet: boolean) => void
+    setMaxValue: (maxValue: number, disableBtnInc: boolean, disableBtnRes: boolean, disableBtnSet: boolean) => void
+    setMinValueToCounter: (minValue: number, disableBtnInc: boolean, disableBtnRes: boolean, disableBtnSet: boolean) => void
 }
 
 export type CounterMenuType = MapDispatchToProps & MapStateToPropsType;

@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import {Counter} from "./components/Counter/Counter";
 import CounterMenuContainer from "./components/CounterMenu/CounterMenuContainer";
+import CounterContainer from "./components/Counter/CounterContainer";
 
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     return (
         <div className="App">
             <CounterMenuContainer/>
-            <Counter/>
+            <CounterContainer/>
         </div>
     );
 }

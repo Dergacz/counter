@@ -6,7 +6,8 @@ const initialState = {
     disableBtnRes: true,
     disableBtnSet: false,
     error: false,
-    errorMessage: ""
+    errorMessage: "",
+    message: ""
 }
 type CounterInitialStateType = typeof initialState
 
@@ -80,6 +81,9 @@ export const counterReducer = (state: CounterInitialStateType = initialState, ac
 export const incValue = () => ({type: "INC_VALUE"} as const);
 export type IncValueActionType = ReturnType<typeof incValue>
 
+export const resetValue = () => ({type: "RESET_VALUE"} as const);
+export type ResetValueActionType = ReturnType<typeof resetValue>
+
 export const setMaxValue = (maxValue: number, disableBtnInc: boolean, disableBtnRes: boolean, disableBtnSet: boolean) => ({
     type: "SET_MAX_VALUE",
     maxValue,
@@ -106,9 +110,6 @@ export const setMinValueToCounter = (minValue: number, disableBtnInc: boolean, d
     disableBtnSet
 } as const);
 export type SetMinValueToCounterActionType = ReturnType<typeof setMinValueToCounter>
-
-export const resetValue = () => ({type: "RESET_VALUE"} as const);
-export type ResetValueActionType = ReturnType<typeof resetValue>
 
 export const setError = (error: boolean, disableBtnSet: boolean) => ({
     type: "SET_ERROR",

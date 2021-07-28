@@ -11,7 +11,7 @@ export const CounterMenu = (props: CounterMenuType) => {
 
         if (value >= maxValue || value < 0 || maxValue < 0) {
             props.setError(true, true);
-            props.setErrorMessage(true, "bad value")
+            props.setErrorMessage(true, "bad value");
         }
         else {
             props.setError(false, false);
@@ -25,7 +25,7 @@ export const CounterMenu = (props: CounterMenuType) => {
 
         if (value <= minValue || value < 0 || minValue < 0) {
             props.setError(true, true);
-            props.setErrorMessage(true, "bad value")
+            props.setErrorMessage(true, "bad value");
         }
         else {
             props.setError(false, false);

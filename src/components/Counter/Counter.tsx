@@ -2,26 +2,30 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../store/reduxStore";
 import {incValue, resetValue} from "../../store/counterReducer";
+import {CounterType} from "./CounterContainer";
 
-export const Counter = () => {
-    const value = useSelector<AppStateType, number>(state => state.counter.value)
-    const dispatch = useDispatch();
+export const Counter = (props: CounterType) => {
 
     const incValueHandler = () => {
-        dispatch(incValue())
+        props.incValue()
     }
 
     const resetValueHandler = () => {
-      dispatch(resetValue())
+        props.resetValue()
     }
 
     return (
         <div>
-            <div>{value}</div>
+            <div>{props.value}</div>
             <button
-
-                onClick={incValueHandler}>Inc</button>
-            <button onClick={resetValueHandler}>Reset</button>
+                disabled={props.value === props.maxValue}
+                onClick={incValueHandler}
+            >Inc
+            </button>
+            <button
+                onClick={resetValueHandler}
+            >Reset
+            </button>
         </div>
     )
 }

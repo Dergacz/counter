@@ -2,7 +2,7 @@ import {AppStateType} from "../store/reduxStore";
 
 export const loadState = () => {
     try {
-        const serializedState = localStorage.getItem('app_state');
+        const serializedState = localStorage.getItem('value');
         if (serializedState === null) {
             return undefined;
         }
@@ -15,7 +15,7 @@ export const loadState = () => {
 export const saveState = (state: AppStateType) => {
     try {
         const serializedState = JSON.stringify(state);
-        localStorage.setItem('app_state', serializedState);
+        localStorage.setItem('value', serializedState);
     } catch {
         // ignore write errors
     }

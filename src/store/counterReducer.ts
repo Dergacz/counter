@@ -1,21 +1,21 @@
 const initialState = {
     value: 0,
     minValue: 0,
-    maxValue: 1,
-    error: null
+    maxValue: 5,
+    disableBtnInc: true,
+    disableBtnRes: true,
+    disableBtnSet: false
 }
 type CounterInitialStateType = typeof initialState
 
+export type ActionType = IncValueActionType
+    | SetMaxValueActionType
+    | SetMinValueActionType
+    | ResetValueActionType
+    | SetMinValueToCounterActionType
 
-type ActionsType = IncValueType
-    | IncMinValueType
-    | ResetType
-    | DecMinValueType
-    | IncMaxValueType
-    | DecMaxValueType
-    | SetCountType
 
-export const counterReducer = (state: CounterInitialStateType = initialState, action: ActionsType) => {
+export const counterReducer = (state: CounterInitialStateType = initialState, action: ActionType): CounterInitialStateType => {
     switch (action.type) {
         case "INC_VALUE": {
             return {
@@ -23,69 +23,69 @@ export const counterReducer = (state: CounterInitialStateType = initialState, ac
                 value: state.value + 1
             }
         }
-        case "INC_MIN_VALUE_TYPE": {
+        case "SET_MIN_VALUE": {
             return {
                 ...state,
-                minValue: state.minValue + 1
+                minValue: action.minValue,
+                disableBtnInc: state.disableBtnInc,
+                disableBtnRes: state.disableBtnRes,
+
             }
         }
-        case "DEC_MIN_VALUE_TYPE": {
+        case "SET_MAX_VALUE": {
             return {
                 ...state,
-                minValue: state.minValue - 1
+                maxValue: action.maxValue,
+                disableBtnInc: state.disableBtnInc,
+                disableBtnRes: state.disableBtnRes
             }
         }
-        case "INC_MAX_VALUE_TYPE": {
+        case "SET_MIN_VALUE_TO_COUNTER": {
             return {
                 ...state,
-                maxValue: state.maxValue + 1
+                minValue: state.minValue,
+                disableBtnInc: !state.disableBtnInc,
+                disableBtnRes: !state.disableBtnRes
             }
         }
-        case "DEC_MAX_VALUE_TYPE": {
-            return {
-                ...state,
-                maxValue: state.maxValue - 1
-            }
-        }
-        case "SET_COUNT_TYPE": {
-            return {
-                ...state,
-                value: action.value
-            }
-        }
-        case "RESET": {
+        case "RESET_VALUE": {
             return {
                 ...state,
                 value: state.minValue
             }
         }
-        default: {
+        default:
             return state
-        }
     }
-
 }
 
-export const incValue = () => ({type: "INC_VALUE"} as const)
-export type IncValueType = ReturnType<typeof incValue>
+export const incValue = () => ({type: "INC_VALUE"} as const);
+export type IncValueActionType = ReturnType<typeof incValue>
+
+export const setMaxValue = (maxValue: number, disableBtnInc: boolean, disableBtnRes: boolean) => ({
+    type: "SET_MAX_VALUE",
+    maxValue,
+    disableBtnInc,
+    disableBtnRes
+} as const);
+export type SetMaxValueActionType = ReturnType<typeof setMaxValue>
+
+export const setMinValue = (minValue: number, disableBtnInc: boolean, disableBtnRes: boolean) => ({
+    type: "SET_MIN_VALUE",
+    minValue,
+    disableBtnInc,
+    disableBtnRes
+} as const);
+export type SetMinValueActionType = ReturnType<typeof setMinValue>
+
+export const setMinValueToCounter = (minValue: number, disableBtnInc: boolean, disableBtnRes: boolean) => ({
+    type: "SET_MIN_VALUE_TO_COUNTER",
+    minValue,
+    disableBtnInc,
+    disableBtnRes
+} as const);
+export type SetMinValueToCounterActionType = ReturnType<typeof setMinValueToCounter>
 
 
-export const incMinValue = () => ({type: "INC_MIN_VALUE_TYPE"} as const)
-export type IncMinValueType = ReturnType<typeof incMinValue>
-
-export const decMinValue = () => ({type: "DEC_MIN_VALUE_TYPE"} as const)
-export type DecMinValueType = ReturnType<typeof decMinValue>
-
-
-export const incMaxValue = () => ({type: "INC_MAX_VALUE_TYPE"} as const)
-export type IncMaxValueType = ReturnType<typeof incMaxValue>
-
-export const decMaxValue = () => ({type: "DEC_MAX_VALUE_TYPE"} as const)
-export type DecMaxValueType = ReturnType<typeof decMaxValue>
-
-
-export const setCount = (value: number) => ({type: "SET_COUNT_TYPE", value} as const)
-export type SetCountType = ReturnType<typeof setCount>
-
-export const reset = () => ({type: "RESET"} as const)
-export type ResetType = ReturnType<typeof reset>
+export const resetValue = () => ({type: "RESET_VALUE"} as const);
+export type ResetValueActionType = ReturnType<typeof resetValue>

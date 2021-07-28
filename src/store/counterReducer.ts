@@ -4,7 +4,8 @@ const initialState = {
     maxValue: 5,
     disableBtnInc: true,
     disableBtnRes: true,
-    disableBtnSet: false
+    disableBtnSet: false,
+    error: false
 }
 type CounterInitialStateType = typeof initialState
 
@@ -13,6 +14,7 @@ export type ActionType = IncValueActionType
     | SetMinValueActionType
     | ResetValueActionType
     | SetMinValueToCounterActionType
+    | SetErrorActionType
 
 
 export const counterReducer = (state: CounterInitialStateType = initialState, action: ActionType): CounterInitialStateType => {
@@ -21,6 +23,12 @@ export const counterReducer = (state: CounterInitialStateType = initialState, ac
             return {
                 ...state,
                 value: state.value + 1
+            }
+        }
+        case "RESET_VALUE": {
+            return {
+                ...state,
+                value: state.minValue
             }
         }
         case "SET_MIN_VALUE": {
@@ -48,10 +56,11 @@ export const counterReducer = (state: CounterInitialStateType = initialState, ac
                 disableBtnRes: !state.disableBtnRes
             }
         }
-        case "RESET_VALUE": {
+        case "SET_ERROR": {
             return {
                 ...state,
-                value: state.minValue
+                error: action.error,
+                disableBtnSet: action.disableBtnSet
             }
         }
         default:
@@ -89,6 +98,12 @@ export const setMinValueToCounter = (minValue: number, disableBtnInc: boolean, d
 } as const);
 export type SetMinValueToCounterActionType = ReturnType<typeof setMinValueToCounter>
 
-
 export const resetValue = () => ({type: "RESET_VALUE"} as const);
 export type ResetValueActionType = ReturnType<typeof resetValue>
+
+export const setError = (error: boolean, disableBtnSet: boolean) => ({
+    type: "SET_ERROR",
+    error,
+    disableBtnSet
+} as const);
+export type SetErrorActionType = ReturnType<typeof setError>

@@ -5,8 +5,6 @@ import CounterContainer from "./components/Counter/CounterContainer";
 
 
 function App() {
-
-
     return (
         <div className="App">
             <CounterMenuContainer/>

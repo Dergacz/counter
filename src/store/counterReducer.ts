@@ -19,6 +19,7 @@ export type ActionType = IncValueActionType
     | SetErrorActionType
     | SetErrorMessageActionType
     | SetMessageActionType
+    | SetDisableIncResetActionType
 
 
 export const counterReducer = (state: CounterInitialStateType = initialState, action: ActionType): CounterInitialStateType => {
@@ -39,8 +40,9 @@ export const counterReducer = (state: CounterInitialStateType = initialState, ac
             return {
                 ...state,
                 minValue: action.minValue,
-                disableBtnInc: state.disableBtnInc,
-                disableBtnRes: state.disableBtnRes,
+                disableBtnInc: action.disableBtnInc,
+                disableBtnRes: action.disableBtnRes,
+                disableBtnSet: action.disableBtnSet
 
             }
         }
@@ -48,16 +50,18 @@ export const counterReducer = (state: CounterInitialStateType = initialState, ac
             return {
                 ...state,
                 maxValue: action.maxValue,
-                disableBtnInc: state.disableBtnInc,
-                disableBtnRes: state.disableBtnRes
+                disableBtnInc: action.disableBtnInc,
+                disableBtnRes: action.disableBtnRes,
+                disableBtnSet: action.disableBtnSet
             }
         }
         case "SET_MIN_VALUE_TO_COUNTER": {
             return {
                 ...state,
-                value: state.minValue,
-                disableBtnInc: !state.disableBtnInc,
-                disableBtnRes: !state.disableBtnRes
+                value: action.minValue,
+                disableBtnInc: action.disableBtnInc,
+                disableBtnRes: action.disableBtnRes,
+                disableBtnSet: action.disableBtnSet
             }
         }
         case "SET_ERROR": {
@@ -78,6 +82,13 @@ export const counterReducer = (state: CounterInitialStateType = initialState, ac
             return {
                 ...state,
                 message: action.message
+            }
+        }
+        case "SET_DISABLE_INC_RES": {
+            return {
+                ...state,
+                disableBtnInc: !action.disableBtnInc,
+                disableBtnRes: !action.disableBtnRes
             }
         }
         default:
@@ -137,3 +148,10 @@ export const setMessage = (message: string) => ({
     message
 } as const);
 export type SetMessageActionType = ReturnType<typeof setMessage>
+
+export const setDisableIncReset = (disableBtnInc: boolean, disableBtnRes: boolean) => ({
+    type: "SET_DISABLE_INC_RES",
+    disableBtnInc,
+    disableBtnRes
+} as const);
+export type SetDisableIncResetActionType = ReturnType<typeof setDisableIncReset>

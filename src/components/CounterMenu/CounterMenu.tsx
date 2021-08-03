@@ -33,7 +33,7 @@ export const CounterMenu = (props: CounterMenuType) => {
     }
 
     const setMinValueHandler = () => {
-        props.setMinValueToCounter(props.minValue, props.disableBtnInc, props.disableBtnRes, props.disableBtnSet)
+        props.setMinValueToCounter(props.minValue, !props.disableBtnInc, !props.disableBtnRes, props.disableBtnSet)
     }
 
     return (

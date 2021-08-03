@@ -1,7 +1,4 @@
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {AppStateType} from "../../store/reduxStore";
-import {incValue, resetValue} from "../../store/counterReducer";
 import {CounterType} from "./CounterContainer";
 
 export const Counter = (props: CounterType) => {

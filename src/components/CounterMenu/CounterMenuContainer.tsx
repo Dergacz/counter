@@ -3,6 +3,7 @@ import {CounterMenu} from "./CounterMenu";
 import {AppStateType} from "../../store/reduxStore";
 import {connect} from "react-redux";
 import {
+    setDisableIncReset,
     setError,
     setErrorMessage,
     setMaxValue,
@@ -31,6 +32,7 @@ class CounterMenuContainer extends React.Component<CounterMenuType, CounterMenuT
                     setError={this.props.setError}
                     setErrorMessage={this.props.setErrorMessage}
                     setMessage={this.props.setMessage}
+                    setDisableIncReset={this.props.setDisableIncReset}
                 />
             </div>
         )
@@ -48,16 +50,17 @@ type MapStateToPropsType = {
     errorMessage: string
 }
 
-type MapDispatchToProps = {
+type MapDispatchToPropsType = {
     setMinValue: (minValue: number, disableBtnInc: boolean, disableBtnRes: boolean, disableBtnSet: boolean) => void
     setMaxValue: (maxValue: number, disableBtnInc: boolean, disableBtnRes: boolean, disableBtnSet: boolean) => void
     setMinValueToCounter: (minValue: number, disableBtnInc: boolean, disableBtnRes: boolean, disableBtnSet: boolean) => void
     setError: (error: boolean, disableBtnSet: boolean) => void
     setErrorMessage: (error: boolean, errorMessage: string) => void
     setMessage: (message: string) => void
+    setDisableIncReset: (disableBtnInc: boolean, disableBtnRes: boolean) => void
 }
 
-export type CounterMenuType = MapDispatchToProps & MapStateToPropsType;
+export type CounterMenuType = MapDispatchToPropsType & MapStateToPropsType;
 
 
 export const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
@@ -78,5 +81,6 @@ export default connect(mapStateToProps, {
     setMinValueToCounter,
     setError,
     setErrorMessage,
-    setMessage
+    setMessage,
+    setDisableIncReset
 })(CounterMenu)

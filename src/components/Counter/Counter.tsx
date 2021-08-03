@@ -16,13 +16,24 @@ export const Counter = (props: CounterType) => {
 
     return (
         <div>
-            <div>{props.value}</div>
+            <div>{
+                props.error
+                    ? props.errorMessage
+                    : props.disableBtnInc
+                        ? props.message
+                        : props.value
+            }
+            </div>
             <button
-                disabled={props.value === props.maxValue}
+                disabled={props.value < props.maxValue || props.error
+                    ? props.disableBtnInc
+                    : !props.disableBtnInc
+                }
                 onClick={incValueHandler}
             >Inc
             </button>
             <button
+                disabled={props.disableBtnRes}
                 onClick={resetValueHandler}
             >Reset
             </button>

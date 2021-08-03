@@ -18,6 +18,7 @@ export type ActionType = IncValueActionType
     | SetMinValueToCounterActionType
     | SetErrorActionType
     | SetErrorMessageActionType
+    | SetMessageActionType
 
 
 export const counterReducer = (state: CounterInitialStateType = initialState, action: ActionType): CounterInitialStateType => {
@@ -73,6 +74,12 @@ export const counterReducer = (state: CounterInitialStateType = initialState, ac
                 errorMessage: action.errorMessage
             }
         }
+        case "SET_MESSAGE": {
+            return {
+                ...state,
+                message: action.message
+            }
+        }
         default:
             return state
     }
@@ -124,3 +131,9 @@ export const setErrorMessage = (error: boolean, errorMessage: string) => ({
     errorMessage
 } as const);
 export type SetErrorMessageActionType = ReturnType<typeof setErrorMessage>
+
+export const setMessage = (message: string) => ({
+    type: "SET_MESSAGE",
+    message
+} as const);
+export type SetMessageActionType = ReturnType<typeof setMessage>

@@ -7,13 +7,13 @@ export const CounterMenu = (props: CounterMenuType) => {
     const minValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.currentTarget.valueAsNumber;
         const maxValue = props.maxValue;
+        props.setMessage("enter values and press Set");
         props.setMinValue(value, true, true, false);
 
         if (value >= maxValue || value < 0 || maxValue < 0) {
             props.setError(true, true);
             props.setErrorMessage(true, "bad value");
-        }
-        else {
+        } else {
             props.setError(false, false);
         }
     }
@@ -21,13 +21,13 @@ export const CounterMenu = (props: CounterMenuType) => {
     const maxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.currentTarget.valueAsNumber;
         const minValue = props.minValue;
+        props.setMessage("enter values and press Set");
         props.setMaxValue(value, true, true, false);
 
         if (value <= minValue || value < 0 || minValue < 0) {
             props.setError(true, true);
             props.setErrorMessage(true, "bad value");
-        }
-        else {
+        } else {
             props.setError(false, false);
         }
     }
@@ -35,6 +35,7 @@ export const CounterMenu = (props: CounterMenuType) => {
     const setMinValueHandler = () => {
         props.setMinValueToCounter(props.minValue, props.disableBtnInc, props.disableBtnRes, props.disableBtnSet)
     }
+
     return (
         <div className={style.menu}>
             <div>
@@ -63,7 +64,10 @@ export const CounterMenu = (props: CounterMenuType) => {
             <button
                 className={style.btn}
                 onClick={setMinValueHandler}
-                disabled={props.error}
+                disabled={props.error
+                    ? true
+                    : props.disableBtnSet
+                }
             >Set
             </button>
         </div>
